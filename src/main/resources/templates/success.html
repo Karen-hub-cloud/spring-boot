@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!--第一步，导入名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>成功</h1>
+    <!--th:text  将div中的文本内容设置为我们指定的值-->
+    <!--${hello}是controller中的数据-->
+    <div th:text="${hello}"></div>
+    <!--th任意属性替换原生属性的值-->
+    <div id="div01" class="myDiv" th:id="${hello}" th:class="${hello}">啦啦</div>
+    <div th:id="${hello}" th:class="${hello}">啦啦</div>
+    <div th:text="${hello}"></div>
+    <div th:utext="${hello}"></div>
+
+</body>
+</html>

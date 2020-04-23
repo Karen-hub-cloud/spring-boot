@@ -1,0 +1,90 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /boot
+#  设置自定义异常
+  error:
+    include-exception: true
+
+spring:
+  profiles:
+    active:
+  # 我们能配置的属性都是来自于这个功能的properties类
+  # 例如：HttpProperties
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+#      解决中文乱码
+      force: true
+
+#  【国际化】配置文件，其实默认命名为message.properties即可，
+#  命名为其他的，例如login，需要在这里配置一下
+  messages:
+    basename: i18n.login
+
+#  禁用掉模板引擎的缓存，开发时更改页面，就不用再重启了
+  thymeleaf:
+    cache: false
+
+#日期格式化器：默认是斜线，这里配置后可以使用-
+  mvc:
+    date-format: yyyy-MM-dd
+    hiddenmethod:
+      filter:
+        enabled: true
+
+#  数据库相关
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.1.168:3306/mybits?autoReconnect=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+    type: com.alibaba.druid.pool.DruidDataSource
+
+#    修改数据源，这里用我们导入的druid,默认为：com.zaxxer.hikari.HikariDataSource
+#    扫描执行sql文件
+#    schema:
+#      - classpath:sql/department.sql
+      #   数据源其他配置
+#    直接这样写不行，需要配置类配置一下
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+# 对静态资源的映射处理
+#  resources:
+#    static-locations: classpath:/hello
+
+
+
+
+# 开启springboot的debug模式:可以打印自动配置报告
+debug: false
+---
+server:
+  port: 8083
+spring:
+  profiles: dev
+
+---
+server:
+  port: 8084
+spring:
+  profiles: prod
+

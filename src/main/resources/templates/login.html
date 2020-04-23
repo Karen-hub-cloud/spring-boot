@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--模板引擎的表达式-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>模板下的首页</title>
+		<!-- Bootstrap core CSS -->
+		<!-- 引用静态资源映射，webjars下的请求，都来类路径下找，引入bootstrap样式 -->
+		<!--E:/Program Files/maven/maven_jar/org/webjars/bootstrap/4.0.0/bootstrap-4.0.0.jar!/META-INF/resources/webjars/bootstrap/4.0.0/css/bootstrap.css-->
+		<!--th:href="@{/}引用路径-->
+		<!--好处在于，项目名变了。在application.yml中改了，这里会自动加上，-->
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+		<!-- 自己写的样式 -->
+		<link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+	</head>
+
+	<body class="text-center">
+		<form class="form-signin" action="dashboard.html" th:action="@{/user/login}" method="post">
+			<!--th:src="@{/}引入地址-->
+			<img class="mb-4" th:src="@{/asserts/img/bootstrap-solid.svg}" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
+			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+			<!--判断，条件成立时，下面的标签才生效-->
+			<p style="color: red;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+			<label class="sr-only"  th:text="#{login.username}">Username</label>
+			<input type="text"  name="username" class="form-control" placeholder="Username" th:placeholder="#{login.username}" required="" autofocus="">
+			<label class="sr-only" th:text="#{login.password}">Password</label>
+			<input type="password" name="password" class="form-control" placeholder="Password" th:placeholder="#{login.password}" required="">
+			<div class="checkbox mb-3">
+				<label>
+					<!--单标签体，不能使用th:text="#{login.rememberme}"-->
+					<!--使用[[#{login.rememberme}]]代替Remember me-->
+					<input type="checkbox" value="remember-me" > [[#{login.rememberme}]]
+        		</label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.signin}">Sign in</button>
+			<p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+			<a class="btn btn-sm" th:href="@{/index.html(l='zh_CN')}">中文</a>
+			<a class="btn btn-sm" th:href="@{/index.html(l='en_US')}">English</a>
+		</form>
+
+	</body>
+
+</html>
