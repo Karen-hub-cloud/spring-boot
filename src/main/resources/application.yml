@@ -65,17 +65,38 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  #配置redis,默认是没有密码的
+  redis:
+    host: 192.168.1.168
 
+swagger:
+  basePackage: com.springbootexample.springbootdemo.controller
+  title: KarenのAPI
+  description: API接口
+  version: V1.0
 
 # 对静态资源的映射处理
 #  resources:
 #    static-locations: classpath:/hello
 
+#开启驼峰命名法
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+
 
 
 
 # 开启springboot的debug模式:可以打印自动配置报告
+#打印日志
 debug: false
+logging:
+  level:
+    com:
+      springbootexample:
+        springbootdemo:
+          mapper: debug
 ---
 server:
   port: 8083

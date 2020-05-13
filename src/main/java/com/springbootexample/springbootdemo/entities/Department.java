@@ -7,7 +7,7 @@ public class Department {
 
 	public Department() {
 	}
-	
+
 	public Department(int i, String string) {
 		this.id = i;
 		this.departmentName = string;
@@ -33,5 +33,5 @@ public class Department {
 	public String toString() {
 		return "Department [id=" + id + ", departmentName=" + departmentName + "]";
 	}
-	
+
 }
