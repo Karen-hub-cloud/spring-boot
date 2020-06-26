@@ -1,5 +1,6 @@
 package com.springbootexample.springbootdemo.model;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,9 @@ import java.util.Map;
 @Validated
 @ConfigurationProperties(prefix = "person")
 @PropertySource(value = {"classpath:Person.properties"})
-public class Person {
+@Data
+@MyAnnotation(value = "abc123")
+public class Person extends Creature<String> implements Comparable,MyInterface{
     /**
      * <bean>
      *     <property name="lastName" value="字面量/${key}从环境变量，配置文件中取值/#{SpEl}"></property>
@@ -30,7 +33,7 @@ public class Person {
     //@Value("${person.lastname}")
     private String lastname;
     //@Value("#{11*2}")
-    private Integer age;
+    public Integer age;
     //@Value("true")
     private Boolean boss;
     //@Email  配合@ConfigurationProperties才能用
@@ -52,60 +55,37 @@ public class Person {
                 ", dog=" + dog +
                 '}';
     }
+    public String hello(){
+        return "hello";
+    }
+    public String hello(String name) throws Exception{
+        return "hello:"+name;
+    }
+    private String privateHello(){
+        return "private,hello";
+    }
+    //内部类
+    class Bird{
 
-    public String getLastname() {
-        return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public Person(String lastname, Integer age, Boolean boss, Date birth, Map<String, Object> maps, List<Object> lists, Dog dog) {
         this.lastname = lastname;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Boolean getBoss() {
-        return boss;
-    }
-
-    public void setBoss(Boolean boss) {
         this.boss = boss;
-    }
-
-    public Date getBirth() {
-        return birth;
-    }
-
-    public void setBirth(Date birth) {
         this.birth = birth;
-    }
-
-    public Map<String, Object> getMaps() {
-        return maps;
-    }
-
-    public void setMaps(Map<String, Object> maps) {
         this.maps = maps;
-    }
-
-    public List<Object> getLists() {
-        return lists;
-    }
-
-    public void setLists(List<Object> lists) {
         this.lists = lists;
-    }
-
-    public Dog getDog() {
-        return dog;
-    }
-
-    public void setDog(Dog dog) {
         this.dog = dog;
+    }
+
+    public Person() {
+        super();
+        System.out.println("调用无参的构造器");
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

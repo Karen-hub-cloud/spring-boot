@@ -20,5 +20,5 @@ public class MyRedisConfig {
         template.setDefaultSerializer(ser);
         return template;
     }
-    
+
 }
