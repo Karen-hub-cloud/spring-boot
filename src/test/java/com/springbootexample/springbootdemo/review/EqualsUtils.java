@@ -3,7 +3,7 @@ package com.springbootexample.springbootdemo.review;
 import com.springbootexample.springbootdemo.model.Person;
 import org.junit.jupiter.api.Test;
 
-public class Equals {
+public class EqualsUtils {
     @Test
     public void test(){
         /*Integer i1=40；Java 在编译的时候会直接将代码封装成 Integer i1=Integer.valueOf(40);，从而使用常量池中的对象。
@@ -12,7 +12,7 @@ public class Equals {
         int b = 1;
         //true 基本数据类型，只能用 == ，比较的是值
         System.out.println(a == b);
-        //完全相等于int？
+        //装箱，实际上调用的Integer.valueOf()
         Integer aa = 1;
         Integer dd = 1;
         //true 两个非New出来的Integet,如果再1-127之间，为true,否则为false,是直接从常量池里取得
@@ -37,6 +37,7 @@ public class Equals {
     Integer i1 = new Integer(40);这种情况下会创建新的对象。*/
     @Test
     public void test2(){
+        //Integer i1=Integer.valueOf(40);
         Integer a = 40;
         Integer b = 40;
         //true
