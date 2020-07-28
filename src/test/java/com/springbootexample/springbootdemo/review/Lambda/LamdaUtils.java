@@ -1,4 +1,4 @@
-package com.springbootexample.springbootdemo.review;
+package com.springbootexample.springbootdemo.review.Lambda;
 
 public class LamdaUtils {
 

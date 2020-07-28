@@ -39,5 +39,6 @@ public class ThreadUtils3 implements Runnable{
         ThreadUtils3 threadUtils3 = new ThreadUtils3();
         new Thread(threadUtils3,"兔子").start();
         new Thread(threadUtils3,"乌龟").start();
+
     }
 }

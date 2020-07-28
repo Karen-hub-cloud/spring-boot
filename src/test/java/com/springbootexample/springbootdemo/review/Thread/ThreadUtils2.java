@@ -20,6 +20,7 @@ public class ThreadUtils2 implements Runnable{
             ticketnum -- ;
         }
     }
+
     public static void main(String[] args){
         ThreadUtils2 threadUtils2 = new ThreadUtils2();
         new Thread(threadUtils2,"小明").start();
