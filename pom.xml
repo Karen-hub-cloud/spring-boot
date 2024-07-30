@@ -109,7 +109,7 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>4.0.0</version>
+            <version>4.1.2</version>
         </dependency>
         <!-- 配置thymeleaf -->
         <!-- springboot引入的版本有点低，需要版本，见前面 -->
